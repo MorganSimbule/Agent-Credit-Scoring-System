@@ -1,0 +1,31 @@
+# Environment / secrets
+backend/.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Local SQLite prediction log (and WAL-mode sidecar files)
+predictions.db
+predictions.db-wal
+predictions.db-shm
+data/predictions.db
+data/predictions.db-wal
+data/predictions.db-shm
+
+# Pytest / tooling
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS/editor cruft
+.DS_Store
+.vscode/
+.idea/
+
+# Jupyter checkpoints (from the modeling notebooks)
+.ipynb_checkpoints/

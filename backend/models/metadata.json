@@ -1,0 +1,84 @@
+{
+  "binary_model_name": "binary_default_pipeline(1).joblib",
+  "multiclass_model_name": "multiclass_risk_pipeline(1).joblib",
+  "binary_metrics": {
+    "accuracy": 0.8,
+    "precision": 0.798021978021978,
+    "recall": 0.8,
+    "f1": 0.7982526156833135,
+    "roc_auc": 0.8392932937181663,
+    "confusion_matrix": [
+      [
+        107,
+        17
+      ],
+      [
+        23,
+        53
+      ]
+    ]
+  },
+  "multiclass_metrics": {
+    "accuracy": 0.695,
+    "precision": 0.6730123873873873,
+    "recall": 0.695,
+    "f1": 0.6761000121174692,
+    "roc_auc": 0.7882315894881989,
+    "confusion_matrix": [
+      [
+        3,
+        13,
+        1,
+        0
+      ],
+      [
+        3,
+        85,
+        19,
+        0
+      ],
+      [
+        0,
+        22,
+        51,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        0
+      ]
+    ]
+  },
+  "occupations": [
+    "Driver",
+    "Farmer",
+    "Trader",
+    "Unspecified",
+    "Vendor"
+  ],
+  "feature_baseline": {
+    "LoanCount": {
+      "mean": 49.705,
+      "std": 29.810674604921317
+    },
+    "AvgLoan": {
+      "mean": 49649.30451565234,
+      "std": 50156.29119439233
+    },
+    "TransactionFrequency": {
+      "mean": 49.42750479429125,
+      "std": 48.9635749239811
+    },
+    "AverageTransactionValue": {
+      "mean": 10127.36256359149,
+      "std": 9714.654394307672
+    },
+    "AuditActivity": {
+      "mean": 49.95,
+      "std": 28.85451834698156
+    }
+  },
+  "trained_at": "2026-08-17T14:21:05.600986+00:00"
+}
