@@ -1,5 +1,5 @@
 # Environment / secrets
-backend/.env
+.env
 
 # Python
 __pycache__/
