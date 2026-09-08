@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Credit Scoring database entity relationship diagram</title>
+  <desc id="desc">Users submit prediction records. The relationship is logical and is not enforced by a database foreign key.</desc>
+  <defs>
+    <style>
+      .title { font: 700 28px Arial, sans-serif; fill: #172b4d; }
+      .subtitle { font: 14px Arial, sans-serif; fill: #4b5563; }
+      .entity-title { font: 700 18px Arial, sans-serif; fill: #172b4d; }
+      .field { font: 14px Arial, sans-serif; fill: #1f2937; }
+      .header-blue { fill: #e8f0fe; stroke: #356ae6; stroke-width: 2; }
+      .header-green { fill: #eaf7ee; stroke: #2f8f56; stroke-width: 2; }
+      .line { stroke: #6b7280; stroke-width: 2; fill: none; }
+      .note { fill: #fff7d6; stroke: #d6a700; stroke-width: 1.5; }
+      .note-text { font: 14px Arial, sans-serif; fill: #4b3b00; }
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="#ffffff"/>
+  <text x="60" y="58" class="title">Agent Credit Scoring Database ER Diagram</text>
+  <text x="60" y="86" class="subtitle">Logical relationship between authenticated submitters and prediction audit records</text>
+
+  <rect x="80" y="150" width="300" height="310" rx="4" class="header-blue"/>
+  <rect x="80" y="150" width="300" height="52" rx="4" fill="#356ae6"/>
+  <text x="105" y="183" class="entity-title" fill="#ffffff">USERS</text>
+  <line x1="80" y1="202" x2="380" y2="202" stroke="#356ae6" stroke-width="2"/>
+  <text x="105" y="232" class="field"><tspan font-weight="700">PK</tspan> id</text>
+  <text x="105" y="262" class="field">username (unique)</text>
+  <text x="105" y="292" class="field">password_hash</text>
+  <text x="105" y="322" class="field">full_name</text>
+  <text x="105" y="352" class="field">role</text>
+  <text x="105" y="382" class="field">is_active</text>
+  <text x="105" y="412" class="field">created_at</text>
+
+  <rect x="760" y="120" width="350" height="390" rx="4" class="header-green"/>
+  <rect x="760" y="120" width="350" height="52" rx="4" fill="#2f8f56"/>
+  <text x="785" y="153" class="entity-title" fill="#ffffff">PREDICTIONS</text>
+  <line x1="760" y1="172" x2="1110" y2="172" stroke="#2f8f56" stroke-width="2"/>
+  <text x="785" y="202" class="field"><tspan font-weight="700">PK</tspan> id</text>
+  <text x="785" y="228" class="field">timestamp</text>
+  <text x="785" y="254" class="field">source</text>
+  <text x="785" y="280" class="field">client_id</text>
+  <text x="785" y="306" class="field">input features...</text>
+  <text x="785" y="332" class="field">model outputs...</text>
+  <text x="785" y="358" class="field">submitted_by_user_id</text>
+  <text x="785" y="384" class="field">submitted_by_username</text>
+
+  <path d="M380 305 H560 V270 H760" class="line"/>
+  <circle cx="380" cy="305" r="5" fill="#356ae6"/>
+  <text x="440" y="288" class="subtitle">1</text>
+  <text x="575" y="250" class="subtitle">submits</text>
+  <text x="710" y="250" class="subtitle">many</text>
+  <path d="M750 262 l10 8 l-10 8" class="line"/>
+
+  <rect x="240" y="590" width="720" height="76" rx="4" class="note"/>
+  <text x="270" y="620" class="note-text">Logical relationship only: the current database does not enforce a foreign key.</text>
+  <text x="270" y="646" class="note-text">One UI submission creates two prediction rows: binary and risk-category outputs.</text>
+</svg>

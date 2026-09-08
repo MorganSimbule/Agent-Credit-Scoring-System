@@ -1,9 +1,40 @@
 """
-Pydantic schemas for monitoring and drift detection endpoints.
+Pydantic schemas for auth, monitoring, and drift detection endpoints.
 """
 
-from typing import Optional, Any
-from pydantic import BaseModel
+from typing import Optional, Any, Literal
+from pydantic import BaseModel, Field
+
+
+# ------------------------------------------------------------------
+# Auth / users
+# ------------------------------------------------------------------
+class AgentRegister(BaseModel):
+    """Self-registration — always creates role='agent'. Admin accounts
+    are seeded separately and never created through this endpoint."""
+    username: str = Field(..., min_length=3, max_length=50)
+    password: str = Field(..., min_length=8, max_length=128)
+    full_name: Optional[str] = Field(default=None, max_length=100)
+
+
+class UserOut(BaseModel):
+    id: int
+    username: str
+    full_name: Optional[str]
+    role: str
+    is_active: bool
+    created_at: str
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    role: str
+    username: str
+
+
+class AgentStatusUpdate(BaseModel):
+    is_active: bool
 
 
 class PredictionsSummary(BaseModel):
@@ -63,6 +94,8 @@ class PredictionLogEntry(BaseModel):
     default_prediction: Optional[int]
     risk_category: Optional[int]
     risk_label: Optional[str]
+    submitted_by_user_id: Optional[int] = None
+    submitted_by_username: Optional[str] = None
 
 
 class LogRecentResponse(BaseModel):

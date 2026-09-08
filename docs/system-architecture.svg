@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Credit Scoring System Runtime Architecture</title>
+  <desc id="desc">Browser and React frontend call Nginx and FastAPI. FastAPI authenticates requests, runs binary and multiclass models, writes to the prediction database, and reads metadata for monitoring.</desc>
+  <defs>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #172b4d; }
+      .subtitle { font: 15px Arial, sans-serif; fill: #5b6472; }
+      .head { font: 700 17px Arial, sans-serif; fill: #172b4d; }
+      .text { font: 14px Arial, sans-serif; fill: #243043; }
+      .small { font: 13px Arial, sans-serif; fill: #4b5563; }
+      .box-blue { fill: #e8f0fe; stroke: #356ae6; stroke-width: 2; }
+      .box-green { fill: #eaf7ee; stroke: #2f8f56; stroke-width: 2; }
+      .box-purple { fill: #f1eaff; stroke: #805ad5; stroke-width: 2; }
+      .box-yellow { fill: #fff7d6; stroke: #d6a700; stroke-width: 2; }
+      .box-gray { fill: #f3f4f6; stroke: #6b7280; stroke-width: 2; }
+      .edge { stroke: #64748b; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .edge-purple { stroke: #805ad5; stroke-width: 2.2; fill: none; marker-end: url(#arrow-purple); }
+      .edge-green { stroke: #2f8f56; stroke-width: 2.2; fill: none; marker-end: url(#arrow-green); }
+      .edge-yellow { stroke: #d6a700; stroke-width: 2.2; fill: none; marker-end: url(#arrow-yellow); }
+      .label { font: 12px Arial, sans-serif; fill: #374151; }
+      .note { fill: #f8fafc; stroke: #94a3b8; stroke-width: 1.5; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 z" fill="#64748b"/></marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 z" fill="#805ad5"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 z" fill="#2f8f56"/></marker>
+    <marker id="arrow-yellow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 z" fill="#d6a700"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="#fff"/>
+  <text x="55" y="55" class="title">Agent Credit Scoring System - Runtime Architecture</text>
+  <text x="57" y="84" class="subtitle">Authenticated scoring, model inference, audit logging, and administrator monitoring</text>
+
+  <rect x="60" y="270" width="190" height="105" rx="7" class="box-yellow"/>
+  <text x="82" y="307" class="head">Browser</text><text x="82" y="333" class="text">Agent or administrator</text>
+
+  <rect x="330" y="190" width="250" height="270" rx="7" class="box-blue"/>
+  <text x="355" y="230" class="head">React frontend</text><text x="355" y="257" class="text">Vite development server</text><text x="355" y="300" class="text">Login / Register</text><text x="355" y="326" class="text">Score Agent</text><text x="355" y="352" class="text">Admin Monitoring</text>
+
+  <rect x="660" y="250" width="190" height="135" rx="7" class="box-gray"/>
+  <text x="685" y="292" class="head">Nginx</text><text x="685" y="319" class="text">Docker public entry point</text><text x="685" y="346" class="text">Port 8080</text>
+
+  <rect x="930" y="165" width="275" height="285" rx="7" class="box-green"/>
+  <text x="955" y="205" class="head">FastAPI scoring API</text><text x="955" y="235" class="text">JWT auth and role checks</text><text x="955" y="261" class="text">Pydantic validation</text><text x="955" y="287" class="text">Rate limiting</text><text x="955" y="313" class="text">Request logging</text><text x="955" y="339" class="text">Prediction endpoints</text><text x="955" y="365" class="text">Admin monitoring endpoints</text>
+
+  <rect x="1260" y="105" width="270" height="205" rx="7" class="box-purple"/>
+  <text x="1285" y="145" class="head">ML model layer</text><text x="1285" y="175" class="text">Binary default pipeline</text><text x="1285" y="201" class="text">Multiclass risk pipeline</text><text x="1285" y="244" class="text">Loaded at API startup</text><text x="1285" y="270" class="text">Model hash in responses</text>
+
+  <rect x="1260" y="390" width="270" height="195" rx="7" class="box-green"/>
+  <text x="1285" y="430" class="head">Prediction database</text><text x="1285" y="460" class="text">PostgreSQL in Docker</text><text x="1285" y="486" class="text">SQLite local fallback</text><text x="1285" y="530" class="text">users</text><text x="1285" y="556" class="text">predictions</text>
+
+  <rect x="930" y="535" width="275" height="165" rx="7" class="box-yellow"/>
+  <text x="955" y="575" class="head">Training metadata</text><text x="955" y="605" class="text">models/metadata.json</text><text x="955" y="647" class="text">Feature baseline</text><text x="955" y="673" class="text">Metrics and occupations</text>
+
+  <rect x="660" y="535" width="190" height="165" rx="7" class="box-blue"/>
+  <text x="685" y="575" class="head">Admin monitoring</text><text x="685" y="612" class="text">Summary totals</text><text x="685" y="638" class="text">Recent rows</text><text x="685" y="664" class="text">Drift report</text>
+
+  <path d="M250 322 H330" class="edge"/><text x="258" y="310" class="label">HTTP</text>
+  <path d="M580 322 H660" class="edge"/><text x="592" y="310" class="label">JSON API</text>
+  <path d="M850 318 H930" class="edge"/><text x="862" y="306" class="label">proxy</text>
+  <path d="M1205 230 H1260" class="edge-purple"/><text x="1208" y="216" class="label">predict</text>
+  <path d="M1205 390 V455 H1260" class="edge-green"/><text x="1215" y="430" class="label">audit logs</text>
+  <path d="M1067 450 V535" class="edge-yellow"/><text x="1080" y="500" class="label">baseline</text>
+  <path d="M850 617 H930" class="edge"/><text x="855" y="605" class="label">admin API</text>
+  <path d="M755 535 V460 H455" class="edge"/><text x="480" y="448" class="label">renders dashboard</text>
+
+  <rect x="60" y="610" width="500" height="150" rx="7" class="note"/>
+  <text x="85" y="645" class="head">Main request path</text><text x="85" y="676" class="text">1. User enters data in the React app.</text><text x="85" y="701" class="text">2. FastAPI authenticates and validates the request.</text><text x="85" y="726" class="text">3. A model returns a score and the result is logged.</text><text x="85" y="751" class="text">4. Admins inspect summaries and drift.</text>
+</svg>

@@ -1,0 +1,62 @@
+<mxfile host="app.diagrams.net" modified="2026-09-08T00:00:00.000Z" agent="GitHub Copilot" version="24.7.17">
+  <diagram id="system-architecture" name="System Architecture">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Agent Credit Scoring System - Runtime Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=24;fontStyle=1;fontColor=#172b4d;" vertex="1" parent="1">
+          <mxGeometry x="50" y="35" width="700" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Authenticated scoring, model inference, audit logging, and administrator monitoring" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#5b6472;" vertex="1" parent="1">
+          <mxGeometry x="52" y="75" width="800" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="browser" value="&lt;b&gt;Browser&lt;/b&gt;&lt;br&gt;Agent or administrator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7d6;strokeColor=#d6a700;fontSize=15;fontColor=#4b3b00;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="70" y="320" width="190" height="95" as="geometry" />
+        </mxCell>
+
+        <mxCell id="frontend" value="&lt;b&gt;React frontend&lt;/b&gt;&lt;br&gt;Vite development server&lt;br&gt;&lt;br&gt;Login / Register&lt;br&gt;Score Agent&lt;br&gt;Admin Monitoring" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f0fe;strokeColor=#356ae6;fontSize=14;fontColor=#172b4d;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="350" y="245" width="245" height="245" as="geometry" />
+        </mxCell>
+
+        <mxCell id="proxy" value="&lt;b&gt;Nginx&lt;/b&gt;&lt;br&gt;Docker public entry point&lt;br&gt;:8080" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3f4f6;strokeColor=#6b7280;fontSize=14;fontColor=#374151;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="680" y="300" width="190" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="api" value="&lt;b&gt;FastAPI scoring API&lt;/b&gt;&lt;br&gt;JWT auth and role checks&lt;br&gt;Pydantic validation&lt;br&gt;Rate limiting&lt;br&gt;Request logging" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf7ee;strokeColor=#2f8f56;fontSize=14;fontColor=#173b28;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="950" y="220" width="260" height="260" as="geometry" />
+        </mxCell>
+
+        <mxCell id="models" value="&lt;b&gt;ML model layer&lt;/b&gt;&lt;br&gt;Binary default pipeline&lt;br&gt;Multiclass risk pipeline&lt;br&gt;&lt;br&gt;Loaded at API startup&lt;br&gt;Model hash returned in results" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1eaff;strokeColor=#805ad5;fontSize=14;fontColor=#3c276d;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="160" width="250" height="190" as="geometry" />
+        </mxCell>
+
+        <mxCell id="database" value="&lt;b&gt;Prediction database&lt;/b&gt;&lt;br&gt;PostgreSQL in Docker&lt;br&gt;SQLite local fallback&lt;br&gt;&lt;br&gt;users&lt;br&gt;predictions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf7ee;strokeColor=#2f8f56;fontSize=14;fontColor=#173b28;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="430" width="250" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="metadata" value="&lt;b&gt;Training metadata&lt;/b&gt;&lt;br&gt;models/metadata.json&lt;br&gt;&lt;br&gt;Feature baseline&lt;br&gt;Metrics and occupations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7d6;strokeColor=#d6a700;fontSize=14;fontColor=#4b3b00;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="950" y="560" width="260" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="monitoring" value="&lt;b&gt;Admin monitoring&lt;/b&gt;&lt;br&gt;Summary totals&lt;br&gt;Recent prediction rows&lt;br&gt;Feature drift report" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f0fe;strokeColor=#356ae6;fontSize=14;fontColor=#172b4d;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="680" y="570" width="190" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge-browser" value="HTTPS / HTTP" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#356ae6;fontColor=#374151;fontSize=12;endArrow=block;" edge="1" parent="1" source="browser" target="frontend"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="edge-frontend-proxy" value="JSON API requests" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#356ae6;fontColor=#374151;fontSize=12;endArrow=block;" edge="1" parent="1" source="frontend" target="proxy"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="edge-proxy-api" value="Reverse proxy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6b7280;fontColor=#374151;fontSize=12;endArrow=block;" edge="1" parent="1" source="proxy" target="api"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="edge-api-models" value="predict / predict_proba" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#805ad5;fontColor=#3c276d;fontSize=12;endArrow=block;" edge="1" parent="1" source="api" target="models"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="edge-api-db" value="log predictions / users / summaries" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2f8f56;fontColor=#173b28;fontSize=12;endArrow=block;" edge="1" parent="1" source="api" target="database"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="edge-api-metadata" value="read baseline" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6a700;fontColor=#4b3b00;fontSize=12;endArrow=block;" edge="1" parent="1" source="api" target="metadata"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="edge-monitoring-api" value="admin-only monitoring endpoints" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#356ae6;fontColor=#172b4d;fontSize=12;endArrow=block;" edge="1" parent="1" source="monitoring" target="api"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="edge-frontend-monitoring" value="renders dashboard" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#356ae6;fontColor=#172b4d;fontSize=12;endArrow=block;" edge="1" parent="1" source="frontend" target="monitoring"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="legend" value="&lt;b&gt;Main request path&lt;/b&gt;&lt;br&gt;1. User enters data in the React app.&lt;br&gt;2. FastAPI authenticates and validates the request.&lt;br&gt;3. The selected model returns a score.&lt;br&gt;4. The result is logged for monitoring.&lt;br&gt;5. Admins inspect summaries and drift." style="shape=note;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#94a3b8;fontSize=13;fontColor=#334155;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="70" y="570" width="470" height="150" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

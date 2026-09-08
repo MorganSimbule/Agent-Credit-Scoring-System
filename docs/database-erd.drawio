@@ -1,0 +1,45 @@
+<mxfile host="app.diagrams.net" modified="2026-09-08T00:00:00.000Z" agent="GitHub Copilot" version="24.7.17">
+  <diagram id="logical-erd" name="Logical ERD">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="users" value="&lt;b&gt;USERS&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;username (unique)&lt;br&gt;password_hash&lt;br&gt;full_name&lt;br&gt;role&lt;br&gt;is_active&lt;br&gt;created_at" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e8f0fe;strokeColor=#356ae6;fontColor=#172b4d;fontSize=14;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="120" y="220" width="260" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="predictions" value="&lt;b&gt;PREDICTIONS&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;timestamp&lt;br&gt;source&lt;br&gt;client_id&lt;br&gt;input features...&lt;br&gt;model outputs...&lt;br&gt;submitted_by_user_id&lt;br&gt;submitted_by_username" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaf7ee;strokeColor=#2f8f56;fontColor=#173b28;fontSize=14;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="650" y="170" width="300" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="relationship" value="submits&lt;br&gt;1 : many&lt;br&gt;(logical relationship; no DB FK)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6b7280;fontColor=#374151;fontSize=13;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="users" target="predictions">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="A single UI submission creates two prediction rows: one binary result and one risk-category result." style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff7d6;strokeColor=#d6a700;fontSize=13;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="390" y="560" width="430" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="physical-schema" name="Physical Schema">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="users-physical" value="&lt;b&gt;users&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;b&gt;id&lt;/b&gt; BIGSERIAL PK&lt;br&gt;username TEXT UNIQUE NOT NULL&lt;br&gt;password_hash TEXT NOT NULL&lt;br&gt;full_name TEXT&lt;br&gt;role TEXT NOT NULL&lt;br&gt;is_active INTEGER NOT NULL&lt;br&gt;created_at TEXT NOT NULL" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e8f0fe;strokeColor=#356ae6;fontColor=#172b4d;fontSize=13;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="70" y="130" width="300" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="predictions-physical" value="&lt;b&gt;predictions&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;b&gt;id&lt;/b&gt; BIGSERIAL PK&lt;br&gt;timestamp TEXT NOT NULL&lt;br&gt;source TEXT NOT NULL&lt;br&gt;client_id TEXT&lt;br&gt;loan_count DOUBLE PRECISION&lt;br&gt;avg_loan DOUBLE PRECISION&lt;br&gt;transaction_frequency DOUBLE PRECISION&lt;br&gt;average_transaction_value DOUBLE PRECISION&lt;br&gt;audit_activity DOUBLE PRECISION&lt;br&gt;occupation TEXT&lt;br&gt;default_probability DOUBLE PRECISION&lt;br&gt;default_prediction INTEGER&lt;br&gt;risk_category INTEGER&lt;br&gt;risk_label TEXT&lt;br&gt;submitted_by_user_id BIGINT&lt;br&gt;submitted_by_username TEXT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaf7ee;strokeColor=#2f8f56;fontColor=#173b28;fontSize=12;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="520" y="70" width="430" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="fk-logical" value="submitted_by_user_id / submitted_by_username" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#7c8798;fontColor=#374151;fontSize=12;endArrow=none;startArrow=none;" edge="1" parent="1" source="users-physical" target="predictions-physical">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="indexes" value="&lt;b&gt;Indexes&lt;/b&gt;&lt;br&gt;idx_predictions_timestamp (timestamp DESC)&lt;br&gt;idx_predictions_source (source)" style="shape=note;whiteSpace=wrap;html=1;fillColor=#f3f4f6;strokeColor=#7c8798;fontSize=13;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="300" y="570" width="430" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="storage" value="PostgreSQL in Docker&lt;br&gt;SQLite fallback for local development" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff7d6;strokeColor=#d6a700;fontSize=13;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="760" y="570" width="260" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
